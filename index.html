@@ -1,402 +1,80 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【氏名】ポートフォリオ | Modern & Clean</title>
-    <style>
-        /*
+/*
         ========================================
         CSS Reset & Variables
         ========================================
         */
         :root {
-            --main-color: #333;
-            --accent-color: #007bff;
+            --main-color: #212529; /* ダークグレーに変更し、よりシャープに */
+            --accent-color: #e63946; /* 情熱的な「赤」に変更し、熱意を表現 */
             --background-color: #f8f9fa;
             --white-color: #ffffff;
             --light-gray: #e9ecef;
-            --font-family: 'Helvetica Neue', Arial, sans-serif;
-            --max-width: 1000px;
+            --font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif; /* 日本語フォントを明示 */
+            --max-width: 1200px; /* 最大幅を広げ、ゆったりとした印象に */
+            --box-shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05); /* 新しい影変数 */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family);
-            color: var(--main-color);
-            background-color: var(--background-color);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--accent-color);
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #0056b3;
-        }
-
-        /*
-        ========================================
-        Layout & Components
-        ========================================
-        */
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
+        /* ... (その他のリセットは変更なし) ... */
+        
         /* Header / Navigation */
-        header {
-            background-color: var(--white-color);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--main-color);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: var(--main-color);
-            font-weight: 500;
-            padding: 5px 0;
-            position: relative;
-        }
+        /* ... (変更なし) ... */
 
         nav ul li a:hover,
         nav ul li a.active {
             color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color); /* ホバー時に下線を引く */
+            padding-bottom: 3px;
         }
 
         /* Hero Section */
-        #hero {
-            background-color: var(--white-color);
-            padding: 100px 0;
-            text-align: center;
-        }
-
         #hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        #hero p {
-            font-size: 1.25rem;
-            color: #555;
-            margin-bottom: 30px;
+            font-size: 3.5rem; /* より大きく、インパクトを強調 */
+            /* ... (その他は変更なし) ... */
         }
 
         .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--white-color);
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            /* ... (変更なし) ... */
+            box-shadow: 0 4px 8px rgba(230, 57, 70, 0.3); /* CTAボタンに影を追加 */
         }
 
         .cta-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 80px 0;
-        }
-
-        section:nth-child(even) {
-            background-color: var(--light-gray);
-        }
-
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 50px;
-            font-weight: 600;
-            border-bottom: 3px solid var(--accent-color);
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-
-        /* About Section */
-        #about .content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        #about .profile-photo {
-            flex-shrink: 0;
-            width: 250px;
-            height: 250px;
-            background-color: var(--light-gray);
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid var(--white-color);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            /* Placeholder for an image */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        #about .bio {
-            flex-grow: 1;
-        }
-
-        #about h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--accent-color);
-        }
-
-        #about p {
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .highlight-box {
-            background-color: var(--white-color);
-            padding: 20px;
-            border-left: 5px solid var(--accent-color);
-            margin-top: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .highlight-box h4 {
-            margin-bottom: 10px;
-            color: var(--main-color);
-            font-size: 1.1rem;
+            background-color: #c1121f; /* 赤のワントーン濃い色 */
         }
         
-        /* Skills Section */
-        #skills .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: center;
+        /* Section Styling */
+        h2 {
+            font-size: 2.2rem; /* より大きく */
+            text-transform: uppercase; /* 大文字風にしてプロフェッショナル感を出す */
+            letter-spacing: 1px;
+            border-bottom: 4px double var(--accent-color); /* 下線を二重線にして強化 */
+            /* ... (その他は変更なし) ... */
         }
 
+        /* Skills Section - 🌟 専門性を強調する修正 */
         .skill-item {
             background-color: var(--white-color);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
+            padding: 30px 25px; /* パディングを増やしてゆったりと */
+            border-radius: 12px;
+            box-shadow: var(--box-shadow-light);
+            border-top: 5px solid var(--accent-color); /* 重要なトップボーダーを追加 */
+            transition: all 0.4s ease;
         }
 
         .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px) scale(1.02); /* よりダイナミックなホバー効果 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .skill-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--accent-color);
+            font-size: 1.4rem;
+            /* ... (変更なし) ... */
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--main-color);
-            color: var(--white-color);
-            text-align: center;
-            padding: 30px 0;
-            font-size: 0.9rem;
+        .skill-item p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 15px;
+            font-weight: 500; /* スキル内容を強調 */
         }
-
-        footer .social-links a {
-            color: var(--white-color);
-            margin: 0 10px;
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        footer .social-links a:hover {
-            opacity: 1;
-            color: var(--accent-color);
-        }
-
-        /*
-        ========================================
-        Responsive Design
-        ========================================
-        */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 10px 20px;
-            }
-
-            nav ul {
-                margin-top: 10px;
-                justify-content: center;
-            }
-
-            nav ul li {
-                margin: 0 15px;
-            }
-
-            #hero {
-                padding: 60px 0;
-            }
-
-            #hero h1 {
-                font-size: 2.5rem;
-            }
-
-            #hero p {
-                font-size: 1rem;
-            }
-
-            #about .content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            #about .profile-photo {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                [氏名] PORTFOLIO
-                </div>
-                <ul>
-                    <li><a href="#hero" class="active">ホーム</a></li>
-                    <li><a href="#about">自己紹介</a></li>
-                    <li><a href="#skills">スキル</a></li>
-                    <li><a href="#contact">コンタクト</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section id="hero">
-        <div class="container">
-            <h1>進化を続ける大学生クリエイター</h1>
-            <p>UI/UXデザインとフロントエンド開発を中心に、ユーザー体験の最大化を目指します。</p>
-            <a href="#contact" class="cta-button">お問い合わせはこちら</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2>自己紹介 & バリュー</h2>
-            <div class="content">
-                <div class="profile-photo">
-                    プロフィール画像（Placeholder）
-                </div>
-                <div class="bio">
-                    <h3>[氏名]（〇〇大学 在学中）</h3>
-                    <p>
-                        〇〇大学でデザイン思考と情報工学を学んでいます。理論と実践を結びつけ、使いやすく美しいWebサービスを創造することが目標です。常に新しい技術を学び、チームでの協調性を大切にしながらプロジェクトに取り組んでいます。
-                    </p>
-
-                    <div class="highlight-box">
-                        <h4>学生時代に培った課題解決力</h4>
-                        <p>
-                            高校時代、バスケ部でベンチ入りが危うい状況に陥ったことが、私の**課題解決力**の原点です。単に得意なシュート練習を増やすのではなく、**チームで最も評価の低かったディフェンス力とパスカット技術の徹底的な強化**に焦点を当てました。毎日の朝練で、顧問に頼み込みマンツーマンで指導を受け、苦手分野の克服に時間を費やしました。
-                        </p>
-                        <p>
-                            結果、練習試合で守備の要としての評価を得て、無事ベンチメンバー入りを勝ち取りました。この経験から、**課題から目を背けず、弱点の克服こそが成長につながる**という学びを得ました。この精神で、デザインや開発の分野でも、常に自分の課題と向き合い、克服し、進化し続けます。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="container">
-            <h2>スキルセット</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <h3>UI/UXデザイン</h3>
-                    <p>Figma, Adobe XD, プロトタイピング, ユーザビリティテスト</p>
-                </div>
-                <div class="skill-item">
-                    <h3>フロントエンド開発</h3>
-                    <p>HTML5, CSS3 (Sass/SCSS), JavaScript (ES6), React</p>
-                </div>
-                <div class="skill-item">
-                    <h3>グラフィック</h3>
-                    <p>Adobe Illustrator, Photoshop</p>
-                </div>
-                <div class="skill-item">
-                    <h3>その他</h3>
-                    <p>Git / GitHub, Webアクセシビリティ, チーム開発</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>コンタクト</h2>
-            <p style="text-align: center; margin-bottom: 30px;">お仕事のご依頼、ご相談など、お気軽にご連絡ください。</p>
-            <div style="text-align: center;">
-                <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-                <p>LinkedIn: <a href="#">/in/yourprofile</a></p>
-                <p>GitHub: <a href="#">/yourgithub</a></p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#" aria-label="Twitter">X</a> |
-                <a href="#" aria-label="LinkedIn">LinkedIn</a> |
-                <a href="#" aria-label="GitHub">GitHub</a>
-            </div>
-            <p>&copy; 2025 [氏名] All Rights Reserved.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+        
+        /* ... (Footer、Responsive Designは変更なし) ... */
